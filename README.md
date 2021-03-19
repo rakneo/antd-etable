@@ -3,7 +3,7 @@
 ## Usage
 ```
 import React, {useContext, useState} from "react";
-import EditableTable from 'antd-etable';
+import EditableTable from 'antdesign-etable';
 import {Button} from 'antd';
 import styles from './index.css';
 
@@ -13,7 +13,7 @@ const data = [
   {id:3,name:'Test 3',title:'Haha',status:2,desc:'Description 3',type:0,created_time:'2019-5-4'}
 ];
 const type = ['Type 1','Type 2'];
-const status = ['Noraml','Abnormal','stop'];
+const status = ['Normal','Abnormal','Stop'];
 const cols = [
   {
     title: 'Name',
