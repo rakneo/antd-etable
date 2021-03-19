@@ -472,6 +472,7 @@ export interface ETableProps {
   rowKey?: string;
   title?: string;
   style?: CSSProperties;
+  actionRowTitle?: string;
   newRowKeyPrefix?: string;
   cols?: ETableColProps<any>[];
   allCols?: ETableColProps<any>[];
@@ -516,6 +517,7 @@ const EditableTable: React.FC<ETableProps> = ({
                                                 rowKey = 'id',
                                                 title = '',
                                                 style = {},
+                                                actionRowTitle,
                                                 newRowKeyPrefix = 'new_',
                                                 cols = defaultArr,
                                                 allCols = [],
@@ -751,7 +753,7 @@ const EditableTable: React.FC<ETableProps> = ({
     }).filter(c => c !== undefined);
     if (showOpBtn) {
       cols1 = cols1.concat({
-        title: i18n['op'],
+        title: actionRowTitle ? actionRowTitle: i18n['op'],
         align: 'center',
         fixed: scroll && scroll.x ? 'right' : null,
         width: editOnSelected ? 60 : 100,

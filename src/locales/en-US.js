@@ -10,7 +10,7 @@ export default {
   'undelete': 'UnDelete',
   'ok': 'Ok',
   'cancel': 'Cancel',
-  'op': 'Operation',
+  'op': 'Action',
   'search': 'Search',
   'columns': 'Columns',
   'download': 'Download',
