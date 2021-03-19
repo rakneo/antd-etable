@@ -1,14 +1,5 @@
 ## Ant Design Editable Table
 
-[![NPM Version](http://img.shields.io/npm/v/antd-etable.svg?style=flat)](https://www.npmjs.org/package/antd-etable)
-[![NPM Downloads](https://img.shields.io/npm/dm/antd-etable.svg?style=flat)](https://www.npmjs.org/package/antd-etable)
-![](https://img.shields.io/badge/license-MIT-000000.svg)
-
-![image](https://github.com/guozhaolong/antd-etable/raw/master/example/snapshots/1.jpg)
-
-## Online Demo
-https://guozhaolong.github.io/antd-etable/
-
 ## Usage
 ```
 import React, {useContext, useState} from "react";
@@ -17,15 +8,15 @@ import {Button} from 'antd';
 import styles from './index.css';
 
 const data = [
-  {id:1,name:'测试1',title:'哈哈',status:0,desc:'描述1描述1描述1描述1',type:0,created_time:'2019-5-2'},
-  {id:2,name:'测试2',title:'呵呵',status:1,desc:'描述2描述2描述2描述2',type:1,created_time:'2019-5-3'},
-  {id:3,name:'测试3',title:'嘻嘻',status:2,desc:'描述3描述3描述3描述3',type:0,created_time:'2019-5-4'}
+  {id:1,name:'Test 1',title:'Haha',status:0,desc:'Description 1',type:0,created_time:'2019-5-2'},
+  {id:2,name:'Test 2',title:'Haha',status:1,desc:'Description 2',type:1,created_time:'2019-5-3'},
+  {id:3,name:'Test 3',title:'Haha',status:2,desc:'Description 3',type:0,created_time:'2019-5-4'}
 ];
-const type = ['类型一','类型二'];
-const status = ['正常','异常','停止'];
+const type = ['Type 1','Type 2'];
+const status = ['Noraml','Abnormal','stop'];
 const cols = [
   {
-    title: '名称',
+    title: 'Name',
     dataIndex: 'name',
     editable:true,
     editor: {
@@ -33,14 +24,14 @@ const cols = [
     },
   },
   {
-    title: '类型',
+    title: 'Type',
     dataIndex: 'type',
     editable:true,
     editor: {
       type: 'select',
       options: [
-        {key: 1, value: '类型一'},
-        {key: 2, value: '类型二'},
+        {key: 1, value: 'Type 1'},
+        {key: 2, value: 'Type 2'},
       ]
     },
     render: (text, record) => (
@@ -48,7 +39,7 @@ const cols = [
     ),
   },
   {
-    title: '日期',
+    title: 'date',
     dataIndex: 'created_time',
     editable:true,
     editor: {
@@ -59,14 +50,14 @@ const cols = [
 const allCols = [
   ...cols.slice(0,2),
   {
-    title: '标题',
+    title: 'title',
     dataIndex: 'title',
     editable:true,
     width: 120,
   },
   ...cols.slice(2),
   {
-    title: '状态',
+    title: 'status',
     dataIndex: 'status',
     editable:true,
     width: 120,
@@ -86,7 +77,7 @@ export default function() {
   };
   return (
     <div className={styles.root}>
-      <div style={{textAlign:'right',marginBottom:16}}><Button type="primary">保存</Button></div>
+      <div style={{textAlign:'right',marginBottom:16}}><Button type="primary">save</Button></div>
       <EditableTable
         title=""
         loading={false}
@@ -106,67 +97,67 @@ export default function() {
 ```
 ## API
 ##### EditableTable
-###### 属性
-| 名称 | 描述 | 类型 | 默认值 |
+###### Attributes
+| Name | Description | Type | Default Value |
 |:---|:---|:---:|:---:|
-| data | 初始化数据 | Array | [ ] |
-| [changedData](#changeddata) | 用于保存增删改的更新数据 | Array | [ ] |
-| [cols](#cols) | 表格列 | Array | [ ] |
-| allCols | 可显示表格列（格式同cols属性） | Array | [ ] |
-| [rowKey](#rowkey) | 唯一标识 | String | 'id' |
-| newRowKeyPrefix | 新增数据唯一标识的前缀 | String | 'new_' |
-| title | 标题 | String或Component | '' |
-| loading | 读取状态 | Boolean | false |
-| pageSize | 每页记录数 | Number | 10 |
-| total | 记录总数 | Number | 0 |
-| multiSelect | 可多选 | Boolean | false |
-| showHeader | 是否显示顶栏 | Boolean | true |
-| showFooter | 是否显示底栏 | Boolean | true |
-| showToolbar | 是否显示顶部工具栏 | Boolean | true |
-| showSelector | 是否显示选择按钮 | Boolean | false |
-| showAddBtn | 是否显示添加按钮 | Boolean | true |
-| showOpBtn | 是否显示编辑和删除按钮 | Boolean | true |
-| showTopPager | 是否显示顶部分页器 | Boolean | true |
-| showBottomPager | 是否显示底部分页器 | Boolean | false |
-| buttons | 自定义操作按钮组 | Component | 无 |
-| style | 样式 | Object | null |
-| expandedRowRender | 展开行时的渲染内容 | ReactNode | null |
-| expandedFirstRow | 默认展开第一行 | Boolean | false |
-| editOnSelected | 点击一行时编辑 | Boolean | false |
-| parentForm | 传入form | FormInstance | null |
+| data | Initialization data | Array | [] |
+| [changedData](#changeddata) | Used to save the updated data added, deleted and modified | Array | [] |
+| [cols](#cols) | Table Columns | Array | [] |
+| allCols | Table columns can be displayed (the format is the same as the cols attribute) | Array | [] |
+| [rowKey](#rowkey) | Unique ID | String |'id' |
+| newRowKeyPrefix | New data unique identification prefix | String |'new_' |
+| title | Title | String or Component |'' |
+| loading | Read status | Boolean | false |
+| pageSize | Number of records per page | Number | 10 |
+| total | Total number of records | Number | 0 |
+| multiSelect | Multiple selections | Boolean | false |
+| showHeader | Whether to show the top bar | Boolean | true |
+| showFooter | Whether to show the bottom bar | Boolean | true |
+| showToolbar | Whether to show the top toolbar | Boolean | true |
+| showSelector | Whether to show the selection button | Boolean | false |
+| showAddBtn | Whether to show the add button | Boolean | true |
+| showOpBtn | Whether to show edit and delete buttons | Boolean | true |
+| showTopPager | Whether to show the top pager | Boolean | true |
+| showBottomPager | Whether to show the bottom pager | Boolean | false |
+| buttons | Custom action button group | Component | None |
+| style | style | Object | null |
+| expandedRowRender | Rendered content when expanding row | ReactNode | null |
+| expandedFirstRow | Expand the first row by default | Boolean | false |
+| editOnSelected | Edit when a row is clicked | Boolean | false |
+| parentForm | incoming form | FormInstance | null |
 
-###### 事件
-| 名称 | 描述 | 参数 | 返回值 |
+###### events
+| Name | Description | Parameters | Return Value |
 |:---|:---|:---:|:---:|
-| canEdit | 每行是否可编辑 | record | Boolean |
-| canRemove | 每行是否可删除 | record | Boolean |
-| beforeEdit | 编辑数据前触发 | 无 | 无 |
-| afterEdit | 编辑数据后触发 | 无 | 无 |
-| [onAdd](#onadd) | 新增数据的默认对象 | 无 | Object |
-| onFetch | 请求数据事件 | pager,filter,sorter | 无 |
-| [onChangedDataUpdate](#onchangeddataupdate) | 更新数据变化时触发 | arr | 无 |
-| [onSelectRow](#onselectrow) | 每页记录数 | rows | 无 |
-| [onDownload](#ondownload) | 每页记录数 | filter,sorter | 无 |
-| onExpandedRow | 展开一行时触发 | record | 无 |
+| canEdit | Whether each line is editable | record | Boolean |
+| canRemove | Whether each row can be deleted | record | Boolean |
+| beforeEdit | Triggered before editing data | None | None |
+| afterEdit | Triggered after editing data | None | None |
+| [onAdd](#onadd) | Default object for new data | None | Object |
+| onFetch | Request data event | pager,filter,sorter | None |
+| [onChangedDataUpdate](#onchangeddataupdate) | Triggered when update data changes | arr | None |
+| [onSelectRow](#onselectrow) | Number of records per page | rows | None |
+| [onDownload](#ondownload) | Number of records per page | filter,sorter | None |
+| onExpandedRow | Triggered when a row is expanded | record | None |
 
-###### 方法
-| 名称 | 描述 | 参数 | 返回值 |
+###### methods
+| Name | Description | Parameters | Return Value |
 |:---|:---|:---:|:---:|
-| resetTable | 重置表格页码 | 无 | 无 |
+| resetTable | Reset table page number | None | None |
 
 ## Config
 ##### changedData
-###### 数组，用于保存变更后的数据，每条数据中会使用isNew、isUpdate、isDelete来标识该数据是新增、更新还是删除
+###### Array, used to save the changed data, each piece of data will use isNew, isUpdate, isDelete to identify whether the data is new, updated or deleted
 
 ##### cols
-###### 参数例子
+###### Parameter example
 ```
 [{
    title: 'ID',
    dataIndex: 'id',
    editable:false,
 },{
-   title: '名称',
+   title: 'name',
    dataIndex: 'name',
    sorter: true,
    editable:true,
@@ -174,32 +165,33 @@ export default function() {
      required: true,
      type: 'select',
      options: [
-       {key: 1, value: '类型一'},
-       {key: 2, value: '类型二'},
+       {key: 1, value: 'Type 1'},
+       {key: 2, value: 'Type 2'},
      ],
      validator: (rule,value,callback) => {
        if(data.find(d => d.name === value))
-         callback('名称已存在!');
+         callback('Name already exists!');
        else
          callback();
      },
    },
 }]
 ```
-###### editable：设置可编辑状态
-###### editor：对象默认类型为text，支持的类型包括select、number、datetime、checkbox，如果为select需传入options参数
+###### editable：Set editable status
+###### editor：The default type of the object is text and Supported types include select、number、datetime、checkbox，
+###### If you need to pass in the options parameter for select
 
 ##### rowKey
-###### 数据的唯一标识，必须唯一，用于判断编辑状态和匹配数据
+###### The unique identifier of the data, must be unique, used to judge the editing status and matching data
 
 ##### onAdd
-###### 当点击新增时，可配置初始化数据的方法用于返回一个新数据对象，可用来设置一些默认值
+###### When you click Add, the method of initializing data can be configured to return a new data object, which can be used to set some default values
 
 ##### onChangedDataUpdate
-###### 每次新增、更新、删除都会触发该方法，并传入更新后的数组
+###### This method is triggered every time you add, update, or delete, and pass in the updated array
 
 ##### onSelectRow
-###### 该方法会传入一个已选对象的数组，如果为单选模式，该数组只包含当前点击行的对象
+###### This method will pass in an array of selected objects. If it is a single-selection mode, the array only contains the objects of the currently clicked row
 
 ##### onDownload
-###### 点击工具栏下载时触发，如果配置了方法，则该方法会接到filter和sorter两个参数，如果没有配置方法则默认生成当页的excel下载
+###### Triggered when you click the toolbar to download. If the method is configured, the method will receive two parameters of filter and sorter. If there is no configuration method, the excel download of the current page will be generated by default.

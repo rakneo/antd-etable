@@ -6,12 +6,12 @@
   "module": "dist/index.esm.js",
   "types": "src/index.d.ts",
   "authors": {
-    "name": "guozhaolong",
-    "email": "guozhaolong@gmail.com"
+    "name": "rakneo",
+    "email": "rakshithvikramraj@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guozhaolong/antd-etable.git"
+    "url": "git+https://github.com/rakneo/antd-etable.git"
   },
   "scripts": {
     "dev": "cd example && umi dev",
@@ -39,9 +39,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/guozhaolong/antd-etable/issues"
+    "url": "https://github.com/rakneo/antd-etable/issues"
   },
-  "homepage": "https://github.com/guozhaolong/antd-etable#readme",
+  "homepage": "https://github.com/rakneo/antd-etable#readme",
   "directories": {
     "example": "example"
   },
