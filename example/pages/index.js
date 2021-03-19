@@ -7,14 +7,14 @@ import { SearchOutlined } from '@ant-design/icons';
 import _ from "lodash";
 
 const demoData = [
-  {id:1,obj1:{a:1,},timeLimit:'10:10',name:'测试1',title:'哈哈',status:0,test1:'111',test2:'222',test3:'aaa',test4:'bbb',desc:'描述1描述1描述1描述1描述1描述1描述1描述1描述1描述1描述1',type:0,created_time:'2019-05-02 00:00:00'},
-  {id:2,obj1:{a:3,},name:'测试2',title:'呵呵',status:1,test1:'333',test2:'444',test3:'ccc',test4:'ddd',desc:'描述2描述2描述2描述2描述2描述2描述2描述2描述2描述2描述2',type:1,created_time:'2019-05-03 00:00:00'},
-  {id:3,obj1:{a:5,},name:'测试3',title:'嘻嘻',status:2,test1:'555',test2:'666',test3:'eee',test4:'fff',desc:'描述3描述3描述3描述3描述3描述3描述3描述3描述3描述3描述3',type:0,created_time:'2019-05-04 00:00:00'},
+  {id:1,name:'Test 1',title:'Haha',status:0,desc:'Description 1',type:0,created_time:'2019-5-2'},
+  {id:2,name:'Test 2',title:'Haha',status:1,desc:'Description 2',type:1,created_time:'2019-5-3'},
+  {id:3,name:'Test 3',title:'Haha',status:2,desc:'Description 3',type:0,created_time:'2019-5-4'},
   {id:4,created_time:null},
   {id:5},
 ];
-const type = ['类型一','类型二'];
-const status = ['正常','异常','停止'];
+const type = ['Type 1','Type 2'];
+const status = ['Normal','Abnormal','Stop'];
 const cols = [
   {
     title: 'ID',
@@ -23,7 +23,7 @@ const cols = [
     width: 120,
   },
   {
-    title: '测试时间',
+    title: 'Time Limit',
     dataIndex: 'timeLimit',
     editable: true,
     editor: { type: 'time' },
@@ -31,7 +31,7 @@ const cols = [
     render: (text) => (text ? moment(text,'HH:mm').format('HH:mm') : '')
   },
   {
-    title: '子属性',
+    title: 'Sub-Attribute',
     dataIndex: ['obj1','a'],
     editable:true,
     width: 120,
@@ -41,7 +41,7 @@ const cols = [
     }
   },
   {
-    title: '名称',
+    title: 'Name',
     dataIndex: 'name',
     sorter: true,
     editable:true,
@@ -50,38 +50,38 @@ const cols = [
       required: true,
       validator: (rule,value,callback,record) => {
         if(demoData.find(d => d.name === value && record.id !== d.id))
-          callback('名称已存在!');
+          callback('The name already exists!');
         else
           callback();
       },
     },
   },
   {
-    title: '测试多列',
+    title: 'Multiple Columns Test',
     children: [
-      {title:'测试列1',children:[
+      {title:'Test Column 1',children:[
           {
-            title: '测试1',
+            title: 'Test 1',
             dataIndex: 'test1',
             width: 120,
             editable:true,
           },
           {
-            title: '测试2',
+            title: 'Test 2',
             dataIndex: 'test2',
             width: 120,
             editable:true,
           },
         ]},
-      {title:'测试列2',children:[
+      {title:'Test Column 2',children:[
           {
-            title: '测试3',
+            title: 'Test 3',
             dataIndex: 'test3',
             width: 120,
             editable:true,
           },
           {
-            title: '测试4',
+            title: 'Test 4',
             dataIndex: 'test4',
             width: 120,
             editable:true,
@@ -90,7 +90,7 @@ const cols = [
     ],
   },
   {
-    title: '描述',
+    title: 'Description',
     dataIndex: 'desc',
     editable:true,
     width: 200,
@@ -102,7 +102,7 @@ const cols = [
     }
   },
   {
-    title: '类型',
+    title: 'Type',
     dataIndex: 'type',
     sorter: true,
     editable:true,
@@ -116,7 +116,7 @@ const cols = [
     ),
   },
   {
-    title: '日期',
+    title: 'Date',
     dataIndex: 'created_time',
     editable:true,
     width: 180,
@@ -129,14 +129,14 @@ const cols = [
 const allCols = [
   ...cols.slice(0,2),
   {
-    title: '标题',
+    title: 'Title',
     dataIndex: 'title',
     editable:true,
     width: 120,
   },
   ...cols.slice(2),
   {
-    title: '状态',
+    title: 'Status',
     dataIndex: 'status',
     editable:true,
     width: 120,
@@ -169,8 +169,8 @@ export default function() {
 
   const tableRef = useRef();
   const demoButtons = <>
-    <Button size="small" style={{marginRight:8}}>按钮一</Button>
-    <Button size="small">按钮二</Button>
+    <Button size="small" style={{marginRight:8}}>Type 1</Button>
+    <Button size="small">Type 2</Button>
   </>;
   const [buttons,setButtons] = useState(demoButtons);
   setTimeout(()=> { setLoading(false); }, 500 );
@@ -223,26 +223,27 @@ export default function() {
   return (
     <div className={styles.root} >
       <div style={{textAlign:'right',marginBottom:16}}>
-        <Checkbox onChange={(e)=>setMultiSelect(e.target.checked)} checked={multiSelect}>多选</Checkbox>
-        <Checkbox onChange={(e)=>setShowToolbar(e.target.checked)} checked={showToolbar}>显示工具栏按钮</Checkbox>
-        <Checkbox onChange={(e)=>setShowAddBtn(e.target.checked)} checked={showAddBtn}>显示添加按钮</Checkbox>
-        <Checkbox onChange={(e)=>setShowTopPager(e.target.checked)} checked={showTopPager}>显示顶部分页器</Checkbox>
-        <Checkbox onChange={(e)=>setShowBottomPager(e.target.checked)} checked={showBottomPager}>显示底部分页器</Checkbox>
-        <Checkbox onChange={(e)=>e.target.checked ? setButtons(demoButtons):setButtons(null)} checked={!!buttons}>显示底部自定义按钮</Checkbox>
-        <Checkbox onChange={(e)=>setShowHeader(e.target.checked)} checked={showHeader}>显示顶栏</Checkbox>
-        <Checkbox onChange={(e)=>setShowFooter(e.target.checked)} checked={showFooter}>显示底栏</Checkbox>
-        <Button type="primary" onClick={()=>{console.log('onSave',changedData);}}>保存</Button>
+        <Checkbox onChange={(e)=>setMultiSelect(e.target.checked)} checked={multiSelect}>Multiple choice</Checkbox>
+        <Checkbox onChange={(e)=>setShowToolbar(e.target.checked)} checked={showToolbar}>Show toolbar buttons</Checkbox>
+        <Checkbox onChange={(e)=>setShowAddBtn(e.target.checked)} checked={showAddBtn}>Show add button</Checkbox>
+        <Checkbox onChange={(e)=>setShowTopPager(e.target.checked)} checked={showTopPager}>Show top section pager</Checkbox>
+        <Checkbox onChange={(e)=>setShowBottomPager(e.target.checked)} checked={showBottomPager}>Show bottom pager</Checkbox>
+        <Checkbox onChange={(e)=>e.target.checked ? setButtons(demoButtons):setButtons(null)} checked={!!buttons}>Show bottom custom button</Checkbox>
+        <Checkbox onChange={(e)=>setShowHeader(e.target.checked)} checked={showHeader}>Show top bar</Checkbox>
+        <Checkbox onChange={(e)=>setShowFooter(e.target.checked)} checked={showFooter}>Show bottom bar</Checkbox>
+        <Button type="primary" onClick={()=>{console.log('onSave',changedData);}}>save</Button>
       </div>
-      <Form form={form} onValuesChange={handleFormChange} initialValues={{appId:'WO',appName:'工单'}}>
-        <Form.Item name="appId" label="主应用ID" rules={[{required:true}]} ><Input style={{width:160}} /></Form.Item>
-        <Form.Item name="appName" label="主应用名" rules={[{required:true},{type:'string',max:5,message:'haha'}]} ><Input style={{width:160}} /></Form.Item>
+      <Form form={form} onValuesChange={handleFormChange} initialValues={{appId:'WO',appName:'World One'}}>
+        <Form.Item name="appId" label="Main Application ID" rules={[{required:true}]} ><Input style={{width:160}} /></Form.Item>
+        <Form.Item name="appName" label="Main Application Name" rules={[{required:true},{type:'string',max:5,message:'haha'}]} ><Input style={{width:160}} /></Form.Item>
         <EditableTable
+          lang='en'
           ref={tableRef}
           parentForm={form}
           editOnSelected={true}
           bordered={true}
           rowKey="id"
-          title="测试列表"
+          title="Test Table"
           scroll={{x:1400}}
           loading={loading}
           data={data}
@@ -272,29 +273,29 @@ export default function() {
             <>
               <Row gutter={16}>
                 <Col span={8}>
-                  <Form.Item name="name" label="名称" rules={[{required:true}]} ><Input suffix={<SearchOutlined onClick={()=>handleChangeData(record)} />} /></Form.Item>
+                  <Form.Item name="name" label="Name" rules={[{required:true}]} ><Input suffix={<SearchOutlined onClick={()=>handleChangeData(record)} />} /></Form.Item>
                 </Col>
                 <Col span={8}>
                   <Form.Item name="created_time"
-                             label="创建时间"
+                             label="Created Time"
                              getValueProps={(value)=>({value:moment(value)})}
                              getValueFromEvent={(e)=> moment(e).format("YYYY-MM-DD HH:mm:ss")}>
                     <DatePicker format="YYYY-MM-DD HH:mm:ss" />
                   </Form.Item>
                 </Col>
                 <Col span={8}>
-                  <Form.Item name={['obj1','b']} label="子属性2"><Input /></Form.Item>
+                  <Form.Item name={['obj1','b']} label="Sub-attribute 2"><Input /></Form.Item>
                 </Col>
               </Row>
               <Row gutter={16}>
                 <Col span={8}>
-                  <Form.Item name="desc" label="描述"><Input.TextArea /></Form.Item>
+                  <Form.Item name="desc" label="Description"><Input.TextArea /></Form.Item>
                 </Col>
                 <Col span={8}>
-                  <Form.Item name="title" label="标题"><Input /></Form.Item>
+                  <Form.Item name="title" label="Title"><Input /></Form.Item>
                 </Col>
                 <Col span={8}>
-                  <Form.Item name="status" label="状态"><InputNumber /></Form.Item>
+                  <Form.Item name="status" label="Status"><InputNumber /></Form.Item>
                 </Col>
               </Row>
             </>

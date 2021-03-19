@@ -371,16 +371,16 @@ const EditableCell: React.FC<EditableCellProps> = ({ editor = { type: 'string' }
     rules.push({ validator: (rule, value, callback) => editor.validator!(rule, value, callback, record) });
   }
   if(type === 'string' && max){
-    rules.push({ type: 'string', max: max, message: `最多${max}个字符` });
+    rules.push({ type: 'string', max: max, message: `Maximum Characters ${max}` });
   }
   if(type === 'number' && max){
-    rules.push({ type: 'number', max, message: `不能大于${max}` });
+    rules.push({ type: 'number', max, message: `Cannot be greater${max}` });
   }
   if(type === 'number' && min){
-    rules.push({ type: 'number', min, message: `不能小于${min}` });
+    rules.push({ type: 'number', min, message: `Cannot be less than ${min}` });
   }
   if(type === 'string' && regex){
-    rules.push({ type: 'string', pattern: regex, message: '内容不符合要求' });
+    rules.push({ type: 'string', pattern: regex, message: 'The content does not meet the requirements' });
   }
   return (
     <td {...restProps}>
@@ -512,7 +512,7 @@ export interface ETableProps {
 const EditableTable: React.FC<ETableProps> = ({
                                                 name ,
                                                 bordered = false,
-                                                lang = 'zh',
+                                                lang = 'en',
                                                 rowKey = 'id',
                                                 title = '',
                                                 style = {},
